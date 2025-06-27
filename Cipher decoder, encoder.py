@@ -35,8 +35,23 @@ def start():
     else:
         start()
 
+def cipher_on_hand():
+    print("Decode example cipher? Y/N (press Enter to skip)")
+    choice = input("> ")
+    if choice == "Y":
+        print("no examples yet")
+        
+    elif choice == "N":
+        decode_start()
+    elif choice == "":
+        decode_start()
+
+    else:
+        cipher_on_hand()
+
 
 def decode_start():
+    # give example ciphers option, Enter to skip
     print("Please provide text to decode (please use lower case for now)") # code breaks here
     global encoded_text
     encoded_text = input("> ")

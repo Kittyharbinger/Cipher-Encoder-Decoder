@@ -3,10 +3,13 @@
 # https://cryptii.com/pipes/caesar-cipher
 
 # Lists
-letters_replacing = []
-letter_replacements = []
-replacement_candidates = []
-replaced_by_candidates = []
+#letters_replacing = []
+#letter_replacements = []
+#replacement_candidates = []
+#replaced_by_candidates = []
+
+# DICTIONARY
+letter_replacements = {} # can update, no dupes, pairs. perfect for this
 
 # Text
 original_text = ""

@@ -73,7 +73,7 @@ def decode_start():
 
 
 def substitution_time():
-    global decoding_text # messy atm
+    global decoding_text
     print("---")
     print(f"Cipher text: {decoding_text}")
     print("Type letter to be replaced (please use lower case for now)")

@@ -102,24 +102,25 @@ def substitution_time():
     #letter_replacements.append(replacement)
 
     global decoding_text # messy atm
-    decoding_text = decoding_text.replace(replacing, replacement) # not reverting changes any more?
+    decoding_text = decoding_text.replace(replacing, replacement)
     print("modified text:", decoding_text)
-    letter_rating()
+    proceed_or_undo()
 
 
-def letter_rating():
-    print("Proceed with change or undo? Y/N (please use lower case for now)")
+def proceed_or_undo():
+    print("Proceed with change or undo? y/n (lower case until i find the case-insensitive string thing)")
     choice = input("> ")
     if choice == "y":
-        letter_replacements["letter plz"] = "replacement letter" # store letter as var
-        print(letter_replacements)
-        # store pair, ask for "candidate word(s)" (for loop is overkill, encourage copy-paste from text?)       
+        print("DICT ADD coming soon")
+        # dict["x"] = "y"
+        # store pair, ask for "candidate word(s)" 
+        # (for loop is overkill, encourage copy-paste from text?)
 
     elif choice == "n":
-        print("undo func goes here")
+        print("UNDO coming soon")
         #print("choice:",choice)
         
-    print("Store a candidate word? Y/N (must type one out)")
+    print("Store a candidate word? y/n (must type one out)")
 
     if choice == "y":
         add_candidate_word()      
@@ -131,16 +132,16 @@ def letter_rating():
 
 def add_candidate_word():
     print("ADD CANDIDATE coming soon")
+    #print("Please type out your candidate word from the cipher text")
+    #input("> ")
     substitution_time()
-    pass
 
 
 def undo():
     print("UNDO coming soon")
-    pass
 
 
-    # UNDO OPTION, leapfrog vars
+    # leapfrog vars, revert text to prev version
 
     substitution_time()
 
@@ -150,16 +151,12 @@ start()
 
 # notify user of letter with highest count? like frequency analysis
 
-
 # BUG can change letters into one that's still encoded (e.g a->h) and uhhh shit
-# TODO store successful pairs, restart decoding
+# TODO undo change, store candidate pairs, restart decoding
 # dictionary and a candidate word
 
 # realising this ^ is a UI huh
 
-
-#print(replacing)
-#print(replacement)
 
 # here's a cipher to use, ceasar shift
 """
@@ -170,12 +167,17 @@ hswohila, aoha uva h dvyk jvbsk il thkl vba.
 
 
 # DUMPING GROUND #
+
 # 2 lists idea before dictionary #
 #replaced_by_candidates.append(replacing)
 #replacement_candidates.append(replacement)
 #print("success candidate:", replacement_candidates, "letter replaced:",replaced_by_candidates) # list grows??
 #print("choice:",choice)
 
+#letter_replacements["letter plz"] = "replacement letter" # store letter as var
+#print(letter_replacements)
+
+# theorising
 # cycle back through pairings, or list with indexes attached, add to success list
 # or letter menu: mark replacement success, fail, replace a letter
 # get index of "x" in list, if not, say "hasn't been used"

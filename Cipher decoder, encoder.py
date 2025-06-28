@@ -14,6 +14,7 @@ letter_replacements = {} # can update, no dupes, pairs. perfect for this
 # Text
 original_text = ""
 decoding_text = ""
+decoding_text_prev = ""
 decoded_text = ""
 
 # Letter vars
@@ -56,33 +57,34 @@ def cipher_on_hand():
 def decode_start():
     # give example ciphers option, Enter to skip
     print("Please provide text to decode (please use lower case for now)") # code breaks here
-    global encoded_text
-    encoded_text = input("> ")
-
     global original_text
-    original_text = encoded_text
+    original_text = input("> ")
+
+    global encoded_text
+    encoded_text = original_text
 
     global decoding_text
     decoding_text = encoded_text
+
+    global decoding_text_prev # for undo
+    decoding_text_prev = decoding_text
     
     substitution_time()
 
 
 def substitution_time():
-    #decoded_text_step = ""
-    #global decoded_text = decoded_text_step
+    global decoding_text # messy atm
     print("---")
+    print(f"Cipher text: {decoding_text}")
     print("Type letter to be replaced (please use lower case for now)")
     global replacing
     replacing = input("> ")
-    #print("replacing:",replacing)
 
-    if replacing == " ": # i think just "" is interpreted as str()
+    # TODO if replacing not in decoding_text:
+    if replacing == " ": # just "" is interpreted as str()
         substitution_time()
     elif len(replacing) > 1:
-        substitution_time() # missing bracket
-
-    #print(replaced_by_candidates)
+        substitution_time()
 
 
     print("Type replacement letter (please use lower case for now)")
@@ -97,49 +99,69 @@ def substitution_time():
 
     #print(replacement_candidates)
 
-    
-    #letters_replacing.append(replacing)
-    #letter_replacements.append(replacement)
-
-    global decoding_text # messy atm
+    global decoding_text_prev
     decoding_text = decoding_text.replace(replacing, replacement)
     print("modified text:", decoding_text)
     proceed_or_undo()
 
 
 def proceed_or_undo():
-    print("Proceed with change or undo? y/n (lower case until i find the case-insensitive string thing)")
+    global replacing
+    global replacement
+    print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
-    if choice == "y":
-        print("DICT ADD coming soon")
-        # dict["x"] = "y"
-        # store pair, ask for "candidate word(s)" 
-        # (for loop is overkill, encourage copy-paste from text?)
+    if choice == "1":
+        letter_replacements["replaced: " + replacing] = ("replacement: " + replacement) # success :D
+        print(letter_replacements)
+        overwrite_prev()
 
-    elif choice == "n":
-        print("UNDO coming soon")
+    elif choice == "2":
+        undo_replacement()
         #print("choice:",choice)
         
-    print("Store a candidate word? y/n (must type one out)")
+    else:
+        proceed_or_undo()
+    
 
-    if choice == "y":
+def overwrite_prev():
+    global decoding_text
+    global decoding_text_prev
+    decoding_text_prev = decoding_text
+    ask_add_candidate()
+
+
+def ask_add_candidate():
+    print("Store a candidate word? y/n (must type one out)")
+    choice2 = input("> ")
+
+    if choice2 == "y":
         add_candidate_word()      
 
-    elif choice == "n":
+    elif choice2 == "n":
         print("no candidate found")
         substitution_time()
+    
+    else:
+        ask_add_candidate()
 
 
-def add_candidate_word():
-    print("ADD CANDIDATE coming soon")
+
+
+
+def add_candidate_word(): # (for loop is overkill, encourage copy-paste from text?)
+    print("ADD CANDIDATE coming soon (enter anything to continue)")
+    input("> ")
     #print("Please type out your candidate word from the cipher text")
-    #input("> ")
+    #candidate = input("> ")
+   
     substitution_time()
 
 
-def undo():
-    print("UNDO coming soon")
-
+def undo_replacement():
+    #print("UNDO coming soon")
+    global decoding_text
+    global decoding_text_prev
+    decoding_text = decoding_text_prev
 
     # leapfrog vars, revert text to prev version
 
@@ -148,6 +170,13 @@ def undo():
 
 
 start()
+
+# TODO include example ciphers
+"""
+Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
+hswohila, aoha uva h dvyk jvbsk il thkl vba.
+
+"""
 
 # notify user of letter with highest count? like frequency analysis
 
@@ -158,12 +187,11 @@ start()
 # realising this ^ is a UI huh
 
 
-# here's a cipher to use, ceasar shift
-"""
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
 
-"""
+
+# dict list? #
+#decoded_text_step = ""
+#global decoded_text = decoded_text_step
 
 
 # DUMPING GROUND #

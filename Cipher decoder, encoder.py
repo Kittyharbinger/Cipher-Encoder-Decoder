@@ -82,7 +82,7 @@ def substitution_time():
     elif len(replacing) > 1:
         substitution_time() # missing bracket
 
-    print(replaced_by_candidates)
+    #print(replaced_by_candidates)
 
 
     print("Type letter to replace it with (please use lower case for now)")
@@ -95,10 +95,11 @@ def substitution_time():
     elif len(replacement) > 1:
         substitution_time()
 
-    print(replacement_candidates)
+    #print(replacement_candidates)
 
-    letters_replacing.append(replacing)
-    letter_replacements.append(replacement)
+    
+    #letters_replacing.append(replacing)
+    #letter_replacements.append(replacement)
 
     global decoding_text # messy atm
     decoding_text = decoding_text.replace(replacing, replacement) # not reverting changes any more?
@@ -110,9 +111,11 @@ def letter_rating():
     print("store letter as possible success? Y/N (please use lower case for now)")
     choice = input("> ")
     if choice == "y":
-        replaced_by_candidates.append(replacing)
-        replacement_candidates.append(replacement)
-        print("success candidate:", replacement_candidates, "letter replaced:",replaced_by_candidates) # list grows??
+        letter_replacements["letter plz"] = "replacement letter" # store letter as var
+        print(letter_replacements)
+        ##replaced_by_candidates.append(replacing)
+        #replacement_candidates.append(replacement)
+        #print("success candidate:", replacement_candidates, "letter replaced:",replaced_by_candidates) # list grows??
         #print("choice:",choice)
 
     elif choice == "n":

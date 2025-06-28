@@ -85,7 +85,7 @@ def substitution_time():
     #print(replaced_by_candidates)
 
 
-    print("Type letter to replace it with (please use lower case for now)")
+    print("Type replacement letter (please use lower case for now)")
     global replacement
     replacement = input("> ")
     #print("replacement:",replacement)
@@ -108,22 +108,39 @@ def substitution_time():
 
 
 def letter_rating():
-    print("store letter as possible success? Y/N (please use lower case for now)")
+    print("Proceed with change or undo? Y/N (please use lower case for now)")
     choice = input("> ")
     if choice == "y":
         letter_replacements["letter plz"] = "replacement letter" # store letter as var
         print(letter_replacements)
-        ##replaced_by_candidates.append(replacing)
-        #replacement_candidates.append(replacement)
-        #print("success candidate:", replacement_candidates, "letter replaced:",replaced_by_candidates) # list grows??
+        # store pair, ask for "candidate word(s)" (for loop is overkill, encourage copy-paste from text?)       
+
+    elif choice == "n":
+        print("undo func goes here")
         #print("choice:",choice)
+        
+    print("Store a candidate word? Y/N (must type one out)")
+
+    if choice == "y":
+        add_candidate_word()      
 
     elif choice == "n":
         print("no candidate found")
-        #print("choice:",choice)
-        
+        substitution_time()
 
-    # BUG Y code doesn't print anything at all, N code uses Y code with choice: n???
+
+def add_candidate_word():
+    print("ADD CANDIDATE coming soon")
+    substitution_time()
+    pass
+
+
+def undo():
+    print("UNDO coming soon")
+    pass
+
+
+    # UNDO OPTION, leapfrog vars
 
     substitution_time()
 
@@ -136,11 +153,7 @@ start()
 
 # BUG can change letters into one that's still encoded (e.g a->h) and uhhh shit
 # TODO store successful pairs, restart decoding
-# cycle back through pairings, or list with indexes attached, add to success list
-# or letter menu: mark replacement success, fail, replace a letter
-# get index of "x" in list, if not, say "hasn't been used"
-
-# dictionary to store pairs?
+# dictionary and a candidate word
 
 # realising this ^ is a UI huh
 
@@ -157,6 +170,20 @@ hswohila, aoha uva h dvyk jvbsk il thkl vba.
 
 
 # DUMPING GROUND #
+# 2 lists idea before dictionary #
+#replaced_by_candidates.append(replacing)
+#replacement_candidates.append(replacement)
+#print("success candidate:", replacement_candidates, "letter replaced:",replaced_by_candidates) # list grows??
+#print("choice:",choice)
+
+# cycle back through pairings, or list with indexes attached, add to success list
+# or letter menu: mark replacement success, fail, replace a letter
+# get index of "x" in list, if not, say "hasn't been used"
+
+
+# Y/N BUG #
+# Y code doesn't print anything at all, N code uses Y code with choice: n???
+
 #if choice == "y" or "Y": # taking out "or Y" fixed it for some reason
 #       replaced_by_candidates.append(replacing)
 #        replacement_candidates.append(replacement)

@@ -165,6 +165,7 @@ def add_candidate_words():
             # list(x) returns blank
             # add candidates to list, have multiple in 1 index
             # add that list to main?
+            #print(x)
             
             candidate_words.append(x) # list(), lists letters, not what i wanted
             # candidate_words_lists.append(list(x)) # one by one again
@@ -191,7 +192,8 @@ def undo_replacement():
 
     substitution_time()
 
-
+lists_list = [["a","b"],[1,2,3]]
+print(lists_list)
 
 start()
 

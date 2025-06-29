@@ -132,6 +132,7 @@ def overwrite_prev():
 
 
 def ask_add_candidate():
+    # testing, how branches work, merge back etc.
     print("Store a candidate word? y/n (must type one out)")
     choice2 = input("> ")
 

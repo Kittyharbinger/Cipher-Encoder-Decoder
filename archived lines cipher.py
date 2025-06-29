@@ -1,8 +1,15 @@
+# Language
+# Please provide text to decode
+
+
+
 # Lists
 #letters_replacing = []
 #letter_replacements = []
 #replacement_candidates = []
 #replaced_by_candidates = []
+
+#print(replacement_candidates)
 
 
 # 2 lists idea before dictionary #

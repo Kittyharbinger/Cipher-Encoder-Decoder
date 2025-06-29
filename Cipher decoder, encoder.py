@@ -2,7 +2,7 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
-# DICTIONARY
+# Dictionary, {replaced:replacement}
 letter_replacements = {} # can update, no dupes, pairs. perfect for this
 
 # Text
@@ -16,7 +16,7 @@ replacing = ""
 replacement = ""
 
 
-print("Welcome to the decoder/encoder")
+print("Welcome to the Decoder/Encoder")
 
 
 def start():
@@ -25,30 +25,35 @@ def start():
     choice = input("> ")
 
     if choice == "1":
-        decode_start()
+        #decoding_cipher_options()
+        cipher_on_hand()
     elif choice == "2":
-        print("encoding not availble atm")
-        decode_start()
+        print("encoding not availble atm (enter anything to continue)")
+        input("> ")
+        cipher_on_hand()
 
     else:
         start()
 
-def cipher_on_hand():
-    print("Decode example cipher? Y/N (press Enter to skip)")
+def decoding_cipher_options():
+    print("Decode example cipher? y/n (press Enter to skip)")
     choice = input("> ")
-    if choice == "Y":
-        print("no examples yet")
+    if choice == "y":
+        print("no examples yet (enter anything to continue)")
+        input("> ")
         
-    elif choice == "N":
-        decode_start()
+    elif choice == "n":
+        cipher_on_hand()
     elif choice == "":
-        decode_start()
-
-    else:
         cipher_on_hand()
 
+    else:
+        decoding_cipher_options()
+    
+    cipher_on_hand()
 
-def decode_start():
+
+def cipher_on_hand():
     # give example ciphers option, Enter to skip
     print("Please provide text to decode (please use lower case for now)") # code breaks here
     global original_text
@@ -71,6 +76,7 @@ def substitution_time():
     print("---")
     print(f"Cipher text: {decoding_text}")
     print("Type letter to be replaced (please use lower case for now)")
+
     global replacing
     replacing = input("> ")
 
@@ -79,19 +85,20 @@ def substitution_time():
         substitution_time()
     elif len(replacing) > 1:
         substitution_time()
+    elif replacing not in decoding_text: # unlikely, failsafe anyway
+        print("letter not found in text (enter anything to continue)")
+        input("> ")
+        substitution_time()
 
 
     print("Type replacement letter (please use lower case for now)")
     global replacement
     replacement = input("> ")
-    #print("replacement:",replacement)
 
     if replacement == " ":
         substitution_time()
     elif len(replacement) > 1:
         substitution_time()
-
-    #print(replacement_candidates)
 
     global decoding_text_prev
     decoding_text = decoding_text.replace(replacing, replacement)
@@ -137,8 +144,6 @@ def ask_add_candidate():
     
     else:
         ask_add_candidate()
-
-
 
 
 

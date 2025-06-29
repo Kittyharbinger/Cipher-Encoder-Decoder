@@ -161,7 +161,9 @@ def add_candidate_words():
     # ask user for each word? select which numbers they want to keep? # feature creep?
     for x in text_copy.split(" "):
         if replacement in x:
+            # append as a list, have multiple in 1 index 
             candidate_words.append(x) # hell yeah first try
+            
 
     #print(candidate_words)
     print(f"candidate words: {candidate_words}") # pages?

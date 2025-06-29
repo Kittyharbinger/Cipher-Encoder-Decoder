@@ -15,6 +15,9 @@ decoded_text = ""
 replacing = ""
 replacement = ""
 
+# Candidate words
+candidate_words = []
+
 
 print("Welcome to the Decoder/Encoder")
 
@@ -148,12 +151,13 @@ def ask_add_candidate():
 
 
 
-def add_candidate_word(): # (for loop is overkill, encourage copy-paste from text?)
-    print("ADD CANDIDATE coming soon (enter anything to continue)")
-    input("> ")
+def add_candidate_word(): # (copy of text, split(" "), for loop. if replacement in..)
     #print("Please type out your candidate word from the cipher text")
-    #candidate = input("> ")
-   
+    print("type in (or copy-paste) a candidate word")
+    candidate = input("> ")
+    candidate_words.append(candidate)
+    
+    print(f"candidate words: {candidate_words}")
     substitution_time()
 
 

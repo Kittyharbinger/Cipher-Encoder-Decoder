@@ -16,6 +16,7 @@ replacing = ""
 replacement = ""
 
 # Candidate words
+candidate_words_lists = []
 candidate_words = []
 
 
@@ -154,15 +155,21 @@ def ask_add_candidate():
 def add_candidate_words():
     text_copy = ""
     global decoding_text
-    text_copy = decoding_text
+    text_copy = decoding_text.split()
 
     global replacement
 
     # ask user for each word? select which numbers they want to keep? # feature creep?
-    for x in text_copy.split(" "):
+    for x in text_copy: #.split(" "):
         if replacement in x:
-            # append as a list, have multiple in 1 index 
-            candidate_words.append(x) # hell yeah first try
+            # list(x) returns blank
+            # add candidates to list, have multiple in 1 index
+            # add that list to main?
+            
+            candidate_words.append(x) # list(), lists letters, not what i wanted
+            # candidate_words_lists.append(list(x)) # one by one again
+
+            # hell yeah first try
             
 
     #print(candidate_words)

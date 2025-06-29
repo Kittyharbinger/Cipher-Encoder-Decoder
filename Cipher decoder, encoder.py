@@ -42,6 +42,7 @@ def decoding_cipher_options():
     print("Decode example cipher? y/n (press Enter to skip)")
     choice = input("> ")
     if choice == "y":
+        # grab YT comments, wikipedia excerpts
         print("no examples yet (enter anything to continue)")
         input("> ")
         
@@ -83,7 +84,6 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # TODO if replacing not in decoding_text:
     if replacing == " ": # just "" is interpreted as str()
         substitution_time()
     elif len(replacing) > 1:
@@ -94,7 +94,7 @@ def substitution_time():
         substitution_time()
 
 
-    print("Type replacement letter (please use lower case for now)")
+    print("Type a replacement letter (please use lower case for now)")
     global replacement
     replacement = input("> ")
 
@@ -166,17 +166,7 @@ def add_candidate_words():
     print(candidate_words)
     input("> ")
 
-    # text_copy
-    # text_copy = text_copy.split(" ")
-    # for x in text_copy. if replacement in x, append(x)?
-    # append to list? var name to keep parity with replacement dict?
-
-    # run split() right now and check its output
-
-    #print("Please type out your candidate word from the cipher text")
-    #print("type in (or copy-paste) a candidate word")
-    #candidate = input("> ")
-    #candidate_words.append(candidate)
+    # candidate list, var name to keep parity with replacement dict?
     
     #print(f"candidate words: {candidate_words}")
     substitution_time()

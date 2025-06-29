@@ -163,12 +163,12 @@ def add_candidate_words():
         if replacement in x:
             candidate_words.append(x) # hell yeah first try
 
-    print(candidate_words)
+    #print(candidate_words)
+    print(f"candidate words: {candidate_words}") # pages?
     input("> ")
 
     # candidate list, var name to keep parity with replacement dict?
     
-    #print(f"candidate words: {candidate_words}")
     substitution_time()
 
 

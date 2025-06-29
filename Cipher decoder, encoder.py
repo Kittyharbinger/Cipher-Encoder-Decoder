@@ -9,7 +9,7 @@ letter_replacements = {} # can update, no dupes, pairs. perfect for this
 original_text = ""
 decoding_text = ""
 decoding_text_prev = ""
-decoded_text = ""
+#decoded_text = ""
 
 # Letter vars
 replacing = ""
@@ -136,11 +136,11 @@ def overwrite_prev():
 
 def ask_add_candidate():
     # testing, how branches work, merge back etc.
-    print("Store a candidate word? y/n (must type one out)")
+    print("Store candidate words containing the replacement letter? y/n")
     choice2 = input("> ")
 
     if choice2 == "y":
-        add_candidate_word()      
+        add_candidate_words()      
 
     elif choice2 == "n":
         print("no candidate found")
@@ -151,13 +151,34 @@ def ask_add_candidate():
 
 
 
-def add_candidate_word(): # (copy of text, split(" "), for loop. if replacement in..)
+def add_candidate_words():
+    text_copy = ""
+    global decoding_text
+    text_copy = decoding_text
+
+    global replacement
+
+    # ask user for each word? select which numbers they want to keep? # feature creep?
+    for x in text_copy.split(" "):
+        if replacement in x:
+            candidate_words.append(x) # hell yeah first try
+
+    print(candidate_words)
+    input("> ")
+
+    # text_copy
+    # text_copy = text_copy.split(" ")
+    # for x in text_copy. if replacement in x, append(x)?
+    # append to list? var name to keep parity with replacement dict?
+
+    # run split() right now and check its output
+
     #print("Please type out your candidate word from the cipher text")
-    print("type in (or copy-paste) a candidate word")
-    candidate = input("> ")
-    candidate_words.append(candidate)
+    #print("type in (or copy-paste) a candidate word")
+    #candidate = input("> ")
+    #candidate_words.append(candidate)
     
-    print(f"candidate words: {candidate_words}")
+    #print(f"candidate words: {candidate_words}")
     substitution_time()
 
 

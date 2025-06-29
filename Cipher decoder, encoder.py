@@ -9,11 +9,14 @@ letter_replacements = {} # can update, no dupes, pairs. perfect for this
 original_text = ""
 decoding_text = ""
 decoding_text_prev = ""
-decoded_text = ""
+#decoded_text = ""
 
 # Letter vars
 replacing = ""
 replacement = ""
+
+# Candidate words
+candidate_words = []
 
 
 print("Welcome to the Decoder/Encoder")
@@ -39,6 +42,7 @@ def decoding_cipher_options():
     print("Decode example cipher? y/n (press Enter to skip)")
     choice = input("> ")
     if choice == "y":
+        # grab YT comments, wikipedia excerpts
         print("no examples yet (enter anything to continue)")
         input("> ")
         
@@ -80,7 +84,6 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # TODO if replacing not in decoding_text:
     if replacing == " ": # just "" is interpreted as str()
         substitution_time()
     elif len(replacing) > 1:
@@ -91,7 +94,7 @@ def substitution_time():
         substitution_time()
 
 
-    print("Type replacement letter (please use lower case for now)")
+    print("Type a replacement letter (please use lower case for now)")
     global replacement
     replacement = input("> ")
 
@@ -132,11 +135,12 @@ def overwrite_prev():
 
 
 def ask_add_candidate():
-    print("Store a candidate word? y/n (must type one out)")
+    # testing, how branches work, merge back etc.
+    print("Store candidate words containing the replacement letter? y/n")
     choice2 = input("> ")
 
     if choice2 == "y":
-        add_candidate_word()      
+        add_candidate_words()      
 
     elif choice2 == "n":
         print("no candidate found")
@@ -147,12 +151,24 @@ def ask_add_candidate():
 
 
 
-def add_candidate_word(): # (for loop is overkill, encourage copy-paste from text?)
-    print("ADD CANDIDATE coming soon (enter anything to continue)")
+def add_candidate_words():
+    text_copy = ""
+    global decoding_text
+    text_copy = decoding_text
+
+    global replacement
+
+    # ask user for each word? select which numbers they want to keep? # feature creep?
+    for x in text_copy.split(" "):
+        if replacement in x:
+            candidate_words.append(x) # hell yeah first try
+
+    #print(candidate_words)
+    print(f"candidate words: {candidate_words}") # pages?
     input("> ")
-    #print("Please type out your candidate word from the cipher text")
-    #candidate = input("> ")
-   
+
+    # candidate list, var name to keep parity with replacement dict?
+    
     substitution_time()
 
 

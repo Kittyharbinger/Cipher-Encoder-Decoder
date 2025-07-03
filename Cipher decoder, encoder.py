@@ -141,12 +141,19 @@ def proceed_or_undo():
     else:
         proceed_or_undo()
     
-
+    
 def overwrite_prev():
     global decoding_text
     global decoding_text_prev
     decoding_text_prev = decoding_text
     ask_add_candidate()
+
+def undo_replacement():
+    global decoding_text
+    global decoding_text_prev
+    decoding_text = decoding_text_prev
+
+    substitution_time()
 
 
 def ask_add_candidate():
@@ -162,7 +169,6 @@ def ask_add_candidate():
     
     else:
         ask_add_candidate()
-
 
 
 def add_candidate_words():
@@ -185,6 +191,7 @@ def add_candidate_words():
     substitution_time()
 
 
+<<<<<<< HEAD
 def undo_replacement():
     global decoding_text
     global decoding_text_prev
@@ -200,6 +207,18 @@ def restart_decoding():
     print("decoding restarted")
     substitution_time()
 
+=======
+
+
+
+def restart_decoding():
+    global decoding_text
+    global original_text
+    decoding_text = original_text
+    print("decoding restarted")
+    substitution_time()
+
+>>>>>>> 47ef3b5 (updating branch, why'd it retain super old stuff?)
 start()
 
 

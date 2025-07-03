@@ -2,9 +2,6 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
-# Dictionary, {replaced:replacement}
-letter_replacements = {} # can update, no dupes, pairs. perfect for this
-
 # Cipher text
 original_text = ""
 decoding_text = ""
@@ -12,17 +9,16 @@ decoding_text_prev = ""
 #decoded_text = ""
 
 # Letter vars
+# TODO change language, brevity
 replacing = ""
 replacement = ""
-letter_pair_lists = [] # dict has no index, list does
+letters_replaced = [] # changed to list, dict keys overwritten. bad idea
 
 # Candidate words
-candidate_words_lists = []
 candidate_words = []
 
 
 print("Welcome to the Decoder/Encoder")
-
 
 def start():
     print("What would you like to do?")
@@ -33,6 +29,7 @@ def start():
         decoding_cipher_options()
 
     elif choice == "2":
+        # figure out caesar shift, shift substring by x amount of letters 
         print("encoding not availble atm (enter anything to continue)")
         input("> ")
         cipher_on_hand()
@@ -59,11 +56,11 @@ def decoding_cipher_options():
 
 
 def cipher_on_hand():
-    print("Please provide text to decode (please use lower case for now)")
+    print("Please provide text to decode (please use lower case for now)") # replacing.upper()?
     global original_text
     original_text = input("> ")
 
-    global encoded_text
+    global encoded_text # same as original text?
     encoded_text = original_text
 
     global decoding_text
@@ -115,8 +112,8 @@ def proceed_or_undo():
     print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
     if choice == "1":
-        letter_replacements["replaced: " + replacing] = ("replacement: " + replacement) # success :D
-        print(letter_replacements)
+        letters_replaced.append(f"replaced: {replacing}, replacement: {replacement}")
+        print(letters_replaced)
         overwrite_prev()
 
     elif choice == "2":
@@ -124,8 +121,6 @@ def proceed_or_undo():
         
     else:
         proceed_or_undo()
-
-    # TODO dict list. would have indices
     
 
 def overwrite_prev():
@@ -162,11 +157,10 @@ def add_candidate_words():
     for x in text_copy.split(" "):
         if replacement in x:
             
-            candidate_words.append(x) # list(), lists letters, not what i wanted
-            #candidate_words_lists.append(list(candidate_words)) # WORKS BUT lower is fine now, missed split(" ") before
+            candidate_words.append(x) # works now, missed split(" ") before
             
 
-    print(f"candidate words: {candidate_words}") # TODO match index with dict... oh no...
+    print(f"candidate words: {candidate_words}") # TODO match index with letter_replacements
     input("> ")
     
     substitution_time()
@@ -185,9 +179,9 @@ start()
 
 # TODO include example ciphers
 
-# TODO dict list. would have indices
 # TODO restart decoding option (type "restart", "res"?)
-# TODO match dict with candidate word and a candidate word
+# TODO match candidate list with letter replacements, history of changes?
+# thinking how to help the user
 
 # realising this ^ is a UI huh
 

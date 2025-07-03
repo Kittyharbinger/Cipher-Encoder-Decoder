@@ -30,7 +30,7 @@ print("Welcome to the Decoder/Encoder")
 
 def start():
     print("What would you like to do?")
-    print("1. Decode cipher\n2. Encode cipher")
+    print("1. Decode cipher\n2. Encode cipher (coming soon(TM))")
     choice = input("> ")
 
     if choice == "1":
@@ -38,7 +38,7 @@ def start():
 
     elif choice == "2":
         # figure out caesar shift, shift substring by x amount of letters 
-        print("encoding not availble atm (enter anything to continue)")
+        print("Encoding is not available yet (enter anything to continue)")
         input("> ")
         cipher_on_hand()
 
@@ -64,7 +64,7 @@ def decoding_cipher_options():
 
 
 def cipher_on_hand():
-    print("Please provide text to decode (please use lower case for now)") # replacing.upper()?
+    print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper()
     global original_text
     original_text = input("> ")
 
@@ -90,8 +90,7 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # BUG any input triggers restart_decoding()
-    if len(replacing) < 1: # if replacing == " ": # BUG is accepted # just "" is interpreted as str()
+    if len(replacing) < 1:
         substitution_time()
     elif len(replacing) > 1:
         if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers func
@@ -100,7 +99,6 @@ def substitution_time():
             substitution_time()
 
     elif replacing not in decoding_text: # failsafe
-        #if not "res" or "restart": 
         print("letter not found in text (enter anything to continue)")
         input("> ")
         substitution_time()

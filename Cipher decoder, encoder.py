@@ -86,6 +86,7 @@ def substitution_time():
     print("---")
     print(f"Cipher text: {decoding_text}")
     print("Type letter to be replaced (please use lower case for now)")
+    print("If you'd like to restart, type \"res\" or \"restart\"")
 
     global replacing
     replacing = input("> ")
@@ -94,13 +95,18 @@ def substitution_time():
         substitution_time()
     elif len(replacing) > 1:
         substitution_time()
-    elif replacing not in decoding_text: # failsafe
-        print("letter not found in text (enter anything to continue)")
-        input("> ")
-        substitution_time()
+
+    elif replacing not in decoding_text:
+        if not "res" or "restart": # this is rejecting *everything* now # failsafe
+            print("letter not found in text (enter anything to continue)")
+            input("> ")
+            substitution_time()
+
+    if replacing == "res" or "restart": # BUG triggered by any letter. h, i, none of those are in res/restart
+        restart_decoding()
 
 
-    print("Type a replacement letter (please use lower case for now)")
+    print("Type a replacement letter (please use lower case for now) (If you'd like to restart, type \"res\" or \"restart\")")
     global replacement
     replacement = input("> ")
 
@@ -108,6 +114,9 @@ def substitution_time():
         substitution_time()
     elif len(replacement) > 1:
         substitution_time()
+    
+    if replacement == "res" or "restart": # BUG triggered by any letter. h, i, none of those are in res/restart
+        restart_decoding()
 
     global decoding_text_prev
     decoding_text = decoding_text.replace(replacing, replacement)
@@ -182,6 +191,13 @@ def undo_replacement():
 
     substitution_time()
 
+
+def restart_decoding():
+    global decoding_text
+    global original_text
+    decoding_text = original_text
+    print("decoding restarted")
+    substitution_time()
 
 start()
 

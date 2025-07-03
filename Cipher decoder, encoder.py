@@ -2,6 +2,15 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
+# TODO include example ciphers (YT comments, wikipedia)
+
+# TODO restart decoding option (type "restart", "res"?)
+# TODO match candidate_words index with letter_replacements
+# history of changes? pages? what's the most helpful?
+
+# (realising this ^ is a UI, huh?)
+
+
 # Cipher text
 original_text = ""
 decoding_text = ""
@@ -177,15 +186,7 @@ def undo_replacement():
 start()
 
 
-# TODO include example ciphers
-
-# TODO restart decoding option (type "restart", "res"?)
-# TODO match candidate list with letter replacements, history of changes?
-# thinking how to help the user
-
-# realising this ^ is a UI huh
-
-
+# Spitballing
 # notify user of letter with highest count? like frequency analysis
 
 
@@ -194,12 +195,12 @@ start()
 Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
 hswohila, aoha uva h dvyk jvbsk il thkl vba.
 """
-# TODO grab YT comments, wikipedia excerpts
+# grab YT comments, wikipedia excerpts
 
 
 
 
-# DUMPING GROUND #
+# EXPLANATION GROUND (/bugs fixed (isnt that what commit history is for?)) #
 # Undo feature #
 # leapfrog vars, revert text to prev version
 

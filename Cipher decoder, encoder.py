@@ -193,17 +193,22 @@ def add_candidate_words():
     substitution_time()
 
 
-def undo_replacement():
-    #print("UNDO coming soon")
+def restart_decoding():
     global decoding_text
-    global decoding_text_prev
-    decoding_text = decoding_text_prev
-
-    # leapfrog vars, revert text to prev version
-
+    global original_text
+    decoding_text = original_text
+    print("decoding restarted")
     substitution_time()
 
 
+def show_change_history():
+    global letters_replaced
+    global candidate_words
+
+    for x in candidate_words: # show index, implement as option
+        print(x)
+        for x in letters_replaced:
+            print(x)
 
 start()
 

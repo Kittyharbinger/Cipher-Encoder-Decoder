@@ -155,22 +155,16 @@ def ask_add_candidate():
 def add_candidate_words():
     text_copy = ""
     global decoding_text
-    text_copy = decoding_text.split()
+    text_copy = decoding_text#.split(" ")
 
     global replacement
 
-    # ask user for each word? select which numbers they want to keep? # feature creep?
-    for x in text_copy: #.split(" "):
+    # ask user for each word? select which indices they want to keep? # feature creep?
+    for x in text_copy.split(" "):
         if replacement in x:
-            # list(x) returns blank
-            # add candidates to list, have multiple in 1 index
-            # add that list to main?
-            #print(x)
             
             candidate_words.append(x) # list(), lists letters, not what i wanted
-            # candidate_words_lists.append(list(x)) # one by one again
-
-            # hell yeah first try
+            #candidate_words_lists.append(list(candidate_words)) # WORKS BUT lower is fine now, missed split(" ") before
             
 
     #print(candidate_words)
@@ -192,10 +186,12 @@ def undo_replacement():
 
     substitution_time()
 
-lists_list = [["a","b"],[1,2,3]]
-print(lists_list)
+
+#lists_list = [["a","b"],[1,2,3]]
+#print(lists_list)
 
 start()
+
 
 # TODO include example ciphers
 """

@@ -33,6 +33,7 @@ print("Welcome to the Decoder/Encoder")
 def start():
     print("What would you like to do?")
     print("1. Decode cipher\n2. Encode cipher (coming soon(TM))")
+    #print("3. Test history")
     choice = input("> ")
 
     if choice == "1":
@@ -186,11 +187,13 @@ def add_candidate_words():
             
 
     print(f"candidate words: {candidate_words}") # TODO match index with letter_replacements
+    show_change_history()
     input("> ")
     
     substitution_time()
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def undo_replacement():
     global decoding_text
@@ -211,6 +214,8 @@ def restart_decoding():
 
 
 
+=======
+>>>>>>> 215937d (basic history, looking up rebase)
 def restart_decoding():
     global decoding_text
     global original_text
@@ -218,7 +223,20 @@ def restart_decoding():
     print("decoding restarted")
     substitution_time()
 
+<<<<<<< HEAD
 >>>>>>> 47ef3b5 (updating branch, why'd it retain super old stuff?)
+=======
+
+def show_change_history():
+    global letters_replaced
+    global candidate_words
+
+    for x in candidate_words: # show index, implement as option
+        print(x)
+        for x in letters_replaced:
+            print(x)
+
+>>>>>>> 215937d (basic history, looking up rebase)
 start()
 
 

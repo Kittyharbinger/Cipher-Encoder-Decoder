@@ -33,6 +33,7 @@ print("Welcome to the Decoder/Encoder")
 def start():
     print("What would you like to do?")
     print("1. Decode cipher\n2. Encode cipher (coming soon(TM))")
+    #print("3. Test history")
     choice = input("> ")
 
     if choice == "1":
@@ -186,12 +187,10 @@ def add_candidate_words():
             
 
     print(f"candidate words: {candidate_words}") # TODO match index with letter_replacements
+    show_change_history()
     input("> ")
     
     substitution_time()
-
-
-
 
 
 def restart_decoding():
@@ -200,6 +199,16 @@ def restart_decoding():
     decoding_text = original_text
     print("decoding restarted")
     substitution_time()
+
+
+def show_change_history():
+    global letters_replaced
+    global candidate_words
+
+    for x in candidate_words: # show index, implement as option
+        print(x)
+        for x in letters_replaced:
+            print(x)
 
 start()
 

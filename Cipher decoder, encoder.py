@@ -91,19 +91,20 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
+    # BUG any input triggers restart_decoding()
     if replacing == " ": # just "" is interpreted as str()
         substitution_time()
     elif len(replacing) > 1:
-        substitution_time()
-
-    elif replacing not in decoding_text:
-        if not "res" or "restart": # this is rejecting *everything* now # failsafe
-            print("letter not found in text (enter anything to continue)")
-            input("> ")
+        if replacing == "res" or "restart":
+            restart_decoding()
+        else:
             substitution_time()
 
-    if replacing == "res" or "restart": # BUG triggered by any letter. h, i, none of those are in res/restart
-        restart_decoding()
+    elif replacing not in decoding_text: # failsafe
+        #if not "res" or "restart": 
+        print("letter not found in text (enter anything to continue)")
+        input("> ")
+        substitution_time()    
 
 
     print("Type a replacement letter (please use lower case for now) (If you'd like to restart, type \"res\" or \"restart\")")
@@ -113,10 +114,11 @@ def substitution_time():
     if replacement == " ":
         substitution_time()
     elif len(replacement) > 1:
-        substitution_time()
-    
-    if replacement == "res" or "restart": # BUG triggered by any letter. h, i, none of those are in res/restart
-        restart_decoding()
+        if replacement == "res" or "restart":
+            restart_decoding()
+        else:
+            substitution_time()
+        
 
     global decoding_text_prev
     decoding_text = decoding_text.replace(replacing, replacement)

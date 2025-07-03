@@ -5,7 +5,7 @@
 # Dictionary, {replaced:replacement}
 letter_replacements = {} # can update, no dupes, pairs. perfect for this
 
-# Text
+# Cipher text
 original_text = ""
 decoding_text = ""
 decoding_text_prev = ""
@@ -14,6 +14,7 @@ decoding_text_prev = ""
 # Letter vars
 replacing = ""
 replacement = ""
+letter_pair_lists = [] # dict has no index, list does
 
 # Candidate words
 candidate_words_lists = []
@@ -29,8 +30,8 @@ def start():
     choice = input("> ")
 
     if choice == "1":
-        #decoding_cipher_options()
-        cipher_on_hand()
+        decoding_cipher_options()
+
     elif choice == "2":
         print("encoding not availble atm (enter anything to continue)")
         input("> ")
@@ -43,7 +44,6 @@ def decoding_cipher_options():
     print("Decode example cipher? y/n (press Enter to skip)")
     choice = input("> ")
     if choice == "y":
-        # grab YT comments, wikipedia excerpts
         print("no examples yet (enter anything to continue)")
         input("> ")
         
@@ -59,8 +59,7 @@ def decoding_cipher_options():
 
 
 def cipher_on_hand():
-    # give example ciphers option, Enter to skip
-    print("Please provide text to decode (please use lower case for now)") # code breaks here
+    print("Please provide text to decode (please use lower case for now)")
     global original_text
     original_text = input("> ")
 
@@ -89,7 +88,7 @@ def substitution_time():
         substitution_time()
     elif len(replacing) > 1:
         substitution_time()
-    elif replacing not in decoding_text: # unlikely, failsafe anyway
+    elif replacing not in decoding_text: # failsafe
         print("letter not found in text (enter anything to continue)")
         input("> ")
         substitution_time()
@@ -122,10 +121,11 @@ def proceed_or_undo():
 
     elif choice == "2":
         undo_replacement()
-        #print("choice:",choice)
         
     else:
         proceed_or_undo()
+
+    # TODO dict list. would have indices
     
 
 def overwrite_prev():
@@ -136,7 +136,6 @@ def overwrite_prev():
 
 
 def ask_add_candidate():
-    # testing, how branches work, merge back etc.
     print("Store candidate words containing the replacement letter? y/n")
     choice2 = input("> ")
 
@@ -155,7 +154,7 @@ def ask_add_candidate():
 def add_candidate_words():
     text_copy = ""
     global decoding_text
-    text_copy = decoding_text#.split(" ")
+    text_copy = decoding_text
 
     global replacement
 
@@ -167,56 +166,49 @@ def add_candidate_words():
             #candidate_words_lists.append(list(candidate_words)) # WORKS BUT lower is fine now, missed split(" ") before
             
 
-    #print(candidate_words)
-    print(f"candidate words: {candidate_words}") # pages?
+    print(f"candidate words: {candidate_words}") # TODO match index with dict... oh no...
     input("> ")
-
-    # candidate list, var name to keep parity with replacement dict?
     
     substitution_time()
 
 
 def undo_replacement():
-    #print("UNDO coming soon")
     global decoding_text
     global decoding_text_prev
     decoding_text = decoding_text_prev
 
-    # leapfrog vars, revert text to prev version
-
     substitution_time()
 
-
-#lists_list = [["a","b"],[1,2,3]]
-#print(lists_list)
 
 start()
 
 
 # TODO include example ciphers
-"""
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
 
-"""
-
-# notify user of letter with highest count? like frequency analysis
-
-# BUG can change letters into one that's still encoded (e.g a->h) and uhhh shit
-# TODO undo change, store candidate pairs, restart decoding
-# dictionary and a candidate word
+# TODO dict list. would have indices
+# TODO restart decoding option (type "restart", "res"?)
+# TODO match dict with candidate word and a candidate word
 
 # realising this ^ is a UI huh
 
 
+# notify user of letter with highest count? like frequency analysis
 
 
-# dict list? #
-#decoded_text_step = ""
-#global decoded_text = decoded_text_step
+# Example ciphers #
+"""
+Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
+hswohila, aoha uva h dvyk jvbsk il thkl vba.
+"""
+# TODO grab YT comments, wikipedia excerpts
+
+
 
 
 # DUMPING GROUND #
+# Undo feature #
+# leapfrog vars, revert text to prev version
+
 
 # Y/N BUG #
 # Y code doesn't print anything at all, N code uses Y code with choice: n???

@@ -4,7 +4,6 @@
 
 # TODO include example ciphers (YT comments, wikipedia)
 
-# TODO restart decoding option (type "restart", "res"?)
 # TODO match candidate_words index with letter_replacements
 # history of changes? pages? what's the most helpful?
 
@@ -92,10 +91,10 @@ def substitution_time():
     replacing = input("> ")
 
     # BUG any input triggers restart_decoding()
-    if replacing == " ": # just "" is interpreted as str()
+    if len(replacing) < 1: # if replacing == " ": # BUG is accepted # just "" is interpreted as str()
         substitution_time()
     elif len(replacing) > 1:
-        if replacing == "res" or "restart":
+        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers func
             restart_decoding()
         else:
             substitution_time()
@@ -104,14 +103,14 @@ def substitution_time():
         #if not "res" or "restart": 
         print("letter not found in text (enter anything to continue)")
         input("> ")
-        substitution_time()    
+        substitution_time()
 
 
     print("Type a replacement letter (please use lower case for now) (If you'd like to restart, type \"res\" or \"restart\")")
     global replacement
     replacement = input("> ")
 
-    if replacement == " ":
+    if len(replacement) < 1: 
         substitution_time()
     elif len(replacement) > 1:
         if replacement == "res" or "restart":
@@ -155,7 +154,7 @@ def ask_add_candidate():
     choice2 = input("> ")
 
     if choice2 == "y":
-        add_candidate_words()      
+        add_candidate_words()
 
     elif choice2 == "n":
         print("no candidate found")
@@ -219,6 +218,11 @@ hswohila, aoha uva h dvyk jvbsk il thkl vba.
 
 
 # EXPLANATION GROUND (/bugs fixed (isnt that what commit history is for?)) #
+# blank input bug
+# if replacement == " ": # BUG deletes character, dang it
+# replacing " " was accepted too
+# fixed with len() > or < 1
+
 # Undo feature #
 # leapfrog vars, revert text to prev version
 

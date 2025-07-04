@@ -4,9 +4,7 @@
 
 # TODO include example ciphers (YT comments, wikipedia)
 
-# TODO match candidate_words index with letter_replacements
-# make relationship clear, number them in print()
-# for loop, nested loop inside to print candidate word
+# TODO prettify candidate list?
 # history of changes? pages? what's the most helpful?
 
 # (realising this ^ is a UI, huh?)
@@ -26,6 +24,7 @@ letters_replaced = [] # changed to list, dict keys overwritten. bad idea
 
 # Candidate words
 candidate_words = []
+candidate_words_prev = [] # updated when restarting decoding
 
 
 print("Welcome to the Decoder/Encoder")
@@ -67,7 +66,7 @@ def decoding_cipher_options():
 
 
 def cipher_on_hand():
-    print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper()
+    print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper() for that sp. one
     global original_text
     original_text = input("> ")
 
@@ -93,11 +92,14 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
+    # BUG > 1 letter restarts decoding, fuck's sake
     if len(replacing) < 1:
         substitution_time()
     elif len(replacing) > 1:
         if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers func
             restart_decoding()
+        elif replacing == "his" or "history":
+            show_change_history()
         else:
             substitution_time()
 
@@ -116,6 +118,8 @@ def substitution_time():
     elif len(replacement) > 1:
         if replacement == "res" or "restart":
             restart_decoding()
+        elif replacement == "his" or "history":
+            show_change_history()
         else:
             substitution_time()
         
@@ -198,11 +202,21 @@ def restart_decoding():
     global decoding_text
     global original_text
     decoding_text = original_text
+    
+    global letters_replaced
+    #letters_replaced.clear() maybe not this, let user know what they've tried
+    
+    global candidate_words
+    global candidate_words_prev
+    candidate_words_prev = candidate_words
+    candidate_words.clear()
+    # only applies for same cipher. new one, just erase
     print("decoding restarted")
     substitution_time()
 
 
 def show_change_history():
+    # TODO option for current/prev attempt's list
     i = 0
     global letters_replaced
     global candidate_words
@@ -212,6 +226,9 @@ def show_change_history():
         print(f"Candidate {i}: {x}")
         for x in letters_replaced:
             print(x)
+
+    input("> ")
+    substitution_time()
 
 
 start()

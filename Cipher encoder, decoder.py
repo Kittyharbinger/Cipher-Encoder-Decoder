@@ -132,8 +132,9 @@ def proceed_or_undo():
     print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
     if choice == "1":
+        # TODO change language here
         letters_replaced.append(f"replaced: {replacing}, replacement: {replacement}")
-        print(letters_replaced)
+        print(letters_replaced[-1]) # not showing whole list each time
         overwrite_prev()
 
     elif choice == "2":
@@ -202,13 +203,16 @@ def restart_decoding():
 
 
 def show_change_history():
+    i = 0
     global letters_replaced
     global candidate_words
 
     for x in candidate_words: # show index, implement as option
-        print(x)
+        i += 1
+        print(f"Candidate {i}: {x}")
         for x in letters_replaced:
             print(x)
+
 
 start()
 

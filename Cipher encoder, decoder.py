@@ -3,8 +3,9 @@
 # https://cryptii.com/pipes/caesar-cipher
 
 # TODO track changed and unchanged letters
-# for letter in decoding_text, add to list (indexed substrings)
-# if letter and index match..
+# for letter in decoding_text, add to list (indexed substrings) 
+# for letter in original_text, add to list too 
+# for loop, nested, if x's match: pass
 
 # TODO include example ciphers (YT comments, wikipedia)
 
@@ -116,7 +117,7 @@ def substitution_time():
         substitution_time()
 
 
-    print("Type a replacement letter (please use lower case for now) (If you'd like to restart, type \"res\" or \"restart\")")
+    print("Type a replacement letter (please use lower case for now)")
     global replacement
     replacement = input("> ")
 
@@ -129,10 +130,36 @@ def substitution_time():
             show_change_history()
         else:
             substitution_time()
+    
+    # what does this achieve?
+    OG_text_letters = []
+    dec_text_letters = []
+    for letter in original_text:
+        OG_text_letters.append(letter)
+        for letter in decoding_text:
+            dec_text_letters.append(letter)
         
+        if OG_text_letters[-1] == dec_text_letters[-1]:
+            pass
 
-    global decoding_text_prev
+            
+    # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
+    # make a for loop list of replace() output
+    # check index+replacing against original? 
+
+    # compare indexes and make it recognise the incoming mess
     decoding_text = decoding_text.replace(replacing, replacement)
+    for x in decoding_text:
+        new_letter = x
+        for y in original_text:
+            OG_letter = y
+        
+        if new_letter == OG_letter:
+            if decoding_text != original_text:
+                 if x == replacing:
+                    x = replacement
+
+    
     print("modified text:", decoding_text)
     proceed_or_undo()
 
@@ -245,7 +272,27 @@ for x in test_text:
     print(x)
 
 
-# Spitballing
+# Spitballing #
+# OG-change tracking #
+# if letter and index match: pass
+# change letter temporarily so it's not caught in .replace()?
+
+# for loop replacing, HEADACHE
+"""new_letter = ""
+    OG_letter = ""
+    for x in decoding_text:
+        new_letter = x
+        for y in original_text:
+            OG_letter = y # no fuck, this'll just 
+        
+        if new_letter == OG_letter:
+            if decoding_text != original_text:
+                 if x == replacing:
+                    x = replacement
+                    
+    """
+
+
 # notify user of letter with highest count? like frequency analysis
 
 

@@ -2,9 +2,13 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
+# TODO track changed and unchanged letters
+# for letter in decoding_text, add to list (indexed substrings)
+# if letter and index match..
+
 # TODO include example ciphers (YT comments, wikipedia)
 
-# TODO prettify candidate list?
+# TODO command for candidate list/history
 # history of changes? pages? what's the most helpful?
 
 # (realising this ^ is a UI, huh?)
@@ -96,11 +100,14 @@ def substitution_time():
     if len(replacing) < 1:
         substitution_time()
     elif len(replacing) > 1:
-        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers func
+        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers this func
+            #print(f"restart cond: {replacing}")
             restart_decoding()
         elif replacing == "his" or "history":
+            #print(f"history cond: {replacing}")
             show_change_history()
         else:
+            #print(f"else cond: {replacing}")
             substitution_time()
 
     elif replacing not in decoding_text: # failsafe
@@ -232,6 +239,10 @@ def show_change_history():
 
 
 start()
+
+test_text = "hi there"
+for x in test_text:
+    print(x)
 
 
 # Spitballing

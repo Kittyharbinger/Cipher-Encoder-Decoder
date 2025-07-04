@@ -131,7 +131,7 @@ def substitution_time():
         else:
             substitution_time()
     
-    # what does this achieve?
+    # compare indexes then turn back into string
     OG_text_letters = []
     dec_text_letters = []
     for letter in original_text:
@@ -145,23 +145,13 @@ def substitution_time():
             
     # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
     # make a for loop list of replace() output
-    # check index+replacing against original? 
-
-    # compare indexes and make it recognise the incoming mess
-    decoding_text = decoding_text.replace(replacing, replacement)
-    for x in decoding_text:
-        new_letter = x
-        for y in original_text:
-            OG_letter = y
-        
-        if new_letter == OG_letter:
-            if decoding_text != original_text:
-                 if x == replacing:
-                    x = replacement
-
     
     print("modified text:", decoding_text)
     proceed_or_undo()
+
+    # list() the decoding text after replacement, check index against original text list()-ed 
+    # if index and string match, replace with original item of same index 
+    # stitch it back together into a string
 
 
 def proceed_or_undo():
@@ -170,10 +160,13 @@ def proceed_or_undo():
     print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
     if choice == "1":
-        # TODO change language here
+        # list() the decoding text after replacement, check index against original text list()-ed 
+        # if index and string match, replace with original item of same index 
+        # stitch it back together into a string
         letters_replaced.append(f"replaced: {replacing}, replacement: {replacement}")
         print(letters_replaced[-1]) # not showing whole list each time
         overwrite_prev()
+        # TODO change language here. later, after this feature gets in
 
     elif choice == "2":
         undo_replacement()
@@ -278,7 +271,8 @@ for x in test_text:
 # change letter temporarily so it's not caught in .replace()?
 
 # for loop replacing, HEADACHE
-"""new_letter = ""
+"""
+new_letter = ""
     OG_letter = ""
     for x in decoding_text:
         new_letter = x
@@ -290,7 +284,21 @@ for x in test_text:
                  if x == replacing:
                     x = replacement
                     
-    """
+"""
+
+"""
+# compare indexes and make it recognise the incoming mess
+    decoding_text = decoding_text.replace(replacing, replacement)
+    for x in decoding_text:
+        new_letter = x
+        for y in original_text:
+            OG_letter = y
+        
+        if new_letter == OG_letter:
+            if decoding_text != original_text:
+                 if x == replacing:
+                    x = replacement
+"""
 
 
 # notify user of letter with highest count? like frequency analysis

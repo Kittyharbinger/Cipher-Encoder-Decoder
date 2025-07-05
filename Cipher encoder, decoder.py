@@ -4,14 +4,17 @@
 
 # DESCRIBE CHANGE IN THE MERGE REQUEST ITSELF
 
-# TODO fix new input bug (input prompt after len > 1)
+# TODO look at how cipher decoding is usually organised, how they track originals and changed
 
 # TODO track changed and unchanged letters
 # for letter in decoding_text, add to list (indexed substrings) 
 # for letter in original_text, add to list too 
 # for loop, nested, if x's match: pass
 
-# TODO include example ciphers (YT comments, wikipedia)
+# TODO include more example ciphers (YT comments, wikipedia)
+# encoder would allow for creating from input, later
+
+# TODO fix new input bug (input prompt after len > 1)
 
 # TODO command for candidate list/history
 # history of changes? pages? what's the most helpful?
@@ -157,8 +160,8 @@ def proceed_or_undo():
         change_checker_list = []
         decoding_text_listifed = list(decoding_text)
         print(f"decode text listified {decoding_text_listifed}")
-        
-        
+
+
         # if replacing affects changed letters and originals
         # so replacing letters diff from original, if originals in same index, change those back
 
@@ -169,6 +172,19 @@ def proceed_or_undo():
 
         # stitch it back together into a string, for x in list, str("" + x)
         
+        
+        # need to know if originals and new letters are present, protect originals somehow
+        # give option to swap one set or the other?
+        # TODO look at how cipher decoding is usually organised, how they track originals and changed
+        for x in decoding_text:
+            replaced = x
+            for y in original_text:
+                original = y
+
+            if replacing == x in original_text:
+                x = "" # fix substring at index
+            
+            decoding_text_listifed.append(x)
 
         overwrite_prev()
         # TODO change language here. later, after this feature gets in

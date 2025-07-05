@@ -2,14 +2,19 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
-# TODO fix new input bug (input prompt after len > 1)
+# DESCRIBE CHANGE IN THE MERGE REQUEST ITSELF
+
+# TODO look at how cipher decoding is usually organised, how they track originals and changed
 
 # TODO track changed and unchanged letters
 # for letter in decoding_text, add to list (indexed substrings) 
 # for letter in original_text, add to list too 
 # for loop, nested, if x's match: pass
 
-# TODO include example ciphers (YT comments, wikipedia)
+# TODO include more example ciphers (YT comments, wikipedia)
+# encoder would allow for creating from input, later
+
+# TODO fix new input bug (input prompt after len > 1)
 
 # TODO command for candidate list/history
 # history of changes? pages? what's the most helpful?
@@ -55,12 +60,16 @@ def start():
         start()
 
 def decoding_cipher_options():
-    print("Decode example cipher? y/n (press Enter to skip)")
+    print("Decode example cipher? (press Enter to skip)")
+    print("1. Yes")
+    print("2. No")
+
     choice = input("> ")
-    if choice == "y":
-        example_ciphers()
+    if choice == "1":
+        print("no examples yet (enter anything to continue)")
+        input("> ")
         
-    elif choice == "n":
+    elif choice == "2":
         cipher_on_hand()
     elif choice == "":
         cipher_on_hand()
@@ -165,9 +174,9 @@ def proceed_or_undo():
 
         change_checker_list = []
         decoding_text_listifed = list(decoding_text)
-        print(f"decode text listified {decoding_text_listifed}")
-        
-        
+        #print(f"decode text listified {decoding_text_listifed}")
+
+
         # if replacing affects changed letters and originals
         # so replacing letters diff from original, if originals in same index, change those back
 
@@ -178,6 +187,19 @@ def proceed_or_undo():
 
         # stitch it back together into a string, for x in list, str("" + x)
         
+        
+        # need to know if originals and new letters are present, protect originals somehow
+        # give option to swap one set or the other?
+        # TODO look at how cipher decoding is usually organised, how they track originals and changed
+        for x in decoding_text:
+            replaced = x
+            for y in original_text:
+                original = y
+
+            if replacing == x in original_text:
+                x = "" # fix substring at index
+            
+            decoding_text_listifed.append(x)
 
         overwrite_prev()
         # TODO change language here. later, after this feature gets in
@@ -204,13 +226,15 @@ def undo_replacement():
 
 
 def ask_add_candidate():
-    print("Store candidate words containing the replacement letter? y/n")
+    print("Store candidate words containing the replacement letter?")
+    print("1. Yes")
+    print("2. No")
     choice2 = input("> ")
 
-    if choice2 == "y":
+    if choice2 == "1":
         add_candidate_words()
 
-    elif choice2 == "n":
+    elif choice2 == "2":
         print("no candidate found")
         substitution_time()
     
@@ -279,10 +303,12 @@ for x in test_text:
     print(x)
 
 
-# Example ciphers #
-"""
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
+# Example ciphers
+"""Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba.
+
+P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz
+[keep the original jeez]
+
 """
 # grab YT comments, wikipedia excerpts
 
@@ -351,7 +377,6 @@ new_letter = ""
 
 
 # notify user of letter with highest count? like frequency analysis
-
 
 
 # EXPLANATION GROUND (/bugs fixed (isnt that what commit history is for?)) #

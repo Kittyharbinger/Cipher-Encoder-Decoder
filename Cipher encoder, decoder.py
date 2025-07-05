@@ -66,8 +66,7 @@ def decoding_cipher_options():
 
     choice = input("> ")
     if choice == "1":
-        print("no examples yet (enter anything to continue)")
-        input("> ")
+        example_ciphers()
         
     elif choice == "2":
         cipher_on_hand()
@@ -90,7 +89,9 @@ def example_ciphers():
         decoding_text = "Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba. "
     elif choice == "2":
         decoding_text = "P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz"
-
+    else:
+        example_ciphers()
+    
     substitution_time()
 
 

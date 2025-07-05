@@ -75,11 +75,11 @@ def cipher_on_hand():
     global original_text
     original_text = input("> ")
 
-    global encoded_text # same as original text?
-    encoded_text = original_text
+    #global encoded_text # same as original text?
+    #encoded_text = original_text
 
     global decoding_text
-    decoding_text = encoded_text
+    decoding_text = original_text
 
     global decoding_text_prev # for undo
     decoding_text_prev = decoding_text
@@ -132,10 +132,9 @@ def substitution_time():
             substitution_time()
             
     # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
-    # make a for loop list of replace() output
     
     decoding_text.replace(replacing, replacement) # BUG not replacing now :)
-    print("modified text:", decoding_text)
+    print("modified text:", decoding_text) # no seriously there's nothing different why do you do this to me?
     proceed_or_undo()
 
 
@@ -145,24 +144,24 @@ def proceed_or_undo():
     print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
     if choice == "1":
-        # for loop list() the decoding text after replacement
-        # check index against original text for loop list()-ed
-        # if replacing == original at that index, leave it be,
-        # isn't over-written then
-
-        # stitch it back together into a string, for x in list, str("" + x)
         letters_replaced.append(f"replaced: {replacing}, replacement: {replacement}")
         print(letters_replaced[-1]) # not showing whole list each time
 
         change_checker_list = []
         decoding_text_listifed = list(decoding_text)
         print(f"decode text listified {decoding_text_listifed}")
+        
+        
+        # if replacing affects changed letters and originals
+        # so replacing letters diff from original, if originals in same index, change those back
 
-        for x in decoding_text:
-            if replacing == x in original_text:
-                x = "" # fix substring at index
-            
-            decoding_text_listifed.append(x)
+        # for loop list() the decoding text after replacement
+        # check index against original text for loop list()-ed
+        # if replacing == original at that index, leave it be,
+        # isn't over-written then
+
+        # stitch it back together into a string, for x in list, str("" + x)
+        
 
         overwrite_prev()
         # TODO change language here. later, after this feature gets in
@@ -270,6 +269,19 @@ for x in test_text:
 # change letter temporarily so it's not caught in .replace()?
 
 # for loop replacing, HEADACHE
+"""
+for x in decoding_text:
+    replaced = x
+    for y in original_text:
+        original = y
+
+    # oh good lord my brain is melting, re-write this
+    if replacing == x in original_text:
+        x = "" # fix substring at index
+    
+    decoding_text_listifed.append(x)
+"""
+
 """
 new_letter = ""
     OG_letter = ""

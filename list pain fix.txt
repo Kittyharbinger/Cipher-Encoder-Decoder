@@ -1,3 +1,11 @@
+# for loop list() the decoding text after replacement
+# check index against original text for loop list()-ed
+# if replacing == original at that index, leave it be,
+# isn't over-written then
+
+# stitch it back together into a string, for x in list, str("" + x)
+
+
 list() the decoding text after replacement, check index against original text list()-ed 
 if index and string match, replace with original item of same index
 

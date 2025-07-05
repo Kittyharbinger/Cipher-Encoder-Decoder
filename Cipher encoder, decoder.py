@@ -121,7 +121,7 @@ def substitution_time():
     global replacement
     replacement = input("> ")
 
-    if len(replacement) < 1: 
+    if len(replacement) < 1:
         substitution_time()
     elif len(replacement) > 1:
         if replacement == "res" or "restart":

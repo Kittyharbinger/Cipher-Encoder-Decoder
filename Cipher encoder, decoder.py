@@ -2,6 +2,8 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
+# DESCRIBE CHANGE IN THE MERGE REQUEST ITSELF
+
 # TODO fix new input bug (input prompt after len > 1)
 
 # TODO track changed and unchanged letters

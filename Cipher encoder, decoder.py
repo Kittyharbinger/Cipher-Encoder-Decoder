@@ -79,6 +79,20 @@ def decoding_cipher_options():
     
     cipher_on_hand()
 
+def example_ciphers():
+    global decoding_text
+    print("Take your pick:")
+    print("1. Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba. ")
+    print("2. P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz")
+    choice = input("> ")
+
+    if choice == "1":
+        decoding_text = "Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba. "
+    elif choice == "2":
+        decoding_text = "P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz"
+
+    substitution_time()
+
 
 def cipher_on_hand():
     print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper() for that sp. one
@@ -110,8 +124,6 @@ def substitution_time():
     if len(replacing) < 1:
         substitution_time()
 
-    # BUG > 1 letter restarts decoding, fuck's sake
-    # TODO look up var == exact string
     if len(replacing) > 1:
         if "res" in replacing: # i think string has to be "if in"
             #print(f"restart cond: {replacing}")
@@ -146,8 +158,8 @@ def substitution_time():
             
     # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
     
-    decoding_text = decoding_text.replace(replacing, replacement) # BUG not replacing now :)
-    print("modified text:", decoding_text) # no seriously there's nothing different why do you do this to me?
+    decoding_text = decoding_text.replace(replacing, replacement)
+    print("modified text:", decoding_text)
     proceed_or_undo()
 
 
@@ -297,9 +309,6 @@ for x in test_text:
 P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz
 [keep the original jeez]
 
-
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
 """
 # grab YT comments, wikipedia excerpts
 
@@ -368,9 +377,6 @@ new_letter = ""
 
 
 # notify user of letter with highest count? like frequency analysis
-
-
-
 
 
 # EXPLANATION GROUND (/bugs fixed (isnt that what commit history is for?)) #

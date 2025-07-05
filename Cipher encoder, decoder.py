@@ -60,13 +60,16 @@ def start():
         start()
 
 def decoding_cipher_options():
-    print("Decode example cipher? y/n (press Enter to skip)")
+    print("Decode example cipher? (press Enter to skip)")
+    print("1. Yes")
+    print("2. No")
+
     choice = input("> ")
-    if choice == "y":
+    if choice == "1":
         print("no examples yet (enter anything to continue)")
         input("> ")
         
-    elif choice == "n":
+    elif choice == "2":
         cipher_on_hand()
     elif choice == "":
         cipher_on_hand()
@@ -159,7 +162,7 @@ def proceed_or_undo():
 
         change_checker_list = []
         decoding_text_listifed = list(decoding_text)
-        print(f"decode text listified {decoding_text_listifed}")
+        #print(f"decode text listified {decoding_text_listifed}")
 
 
         # if replacing affects changed letters and originals
@@ -211,13 +214,15 @@ def undo_replacement():
 
 
 def ask_add_candidate():
-    print("Store candidate words containing the replacement letter? y/n")
+    print("Store candidate words containing the replacement letter?")
+    print("1. Yes")
+    print("2. No")
     choice2 = input("> ")
 
-    if choice2 == "y":
+    if choice2 == "1":
         add_candidate_words()
 
-    elif choice2 == "n":
+    elif choice2 == "2":
         print("no candidate found")
         substitution_time()
     
@@ -286,6 +291,17 @@ for x in test_text:
     print(x)
 
 
+# Example ciphers
+"""Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba.
+
+P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz
+
+Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
+hswohila, aoha uva h dvyk jvbsk il thkl vba.
+"""
+# grab YT comments, wikipedia excerpts
+
+
 # Spitballing #
 # OG-change tracking #
 # if letter and index match: pass
@@ -351,13 +367,6 @@ new_letter = ""
 
 # notify user of letter with highest count? like frequency analysis
 
-
-# Example ciphers #
-"""
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
-"""
-# grab YT comments, wikipedia excerpts
 
 
 

@@ -2,6 +2,8 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
+# TODO fix input bug, top priority
+
 # TODO track changed and unchanged letters
 # for letter in decoding_text, add to list (indexed substrings) 
 # for letter in original_text, add to list too 
@@ -97,9 +99,11 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # BUG > 1 letter restarts decoding, fuck's sake
     if len(replacing) < 1:
         substitution_time()
+
+    # BUG > 1 letter restarts decoding, fuck's sake
+    # TODO check string documentation, parsing(?), length issues..
     elif len(replacing) > 1:
         if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers this func
             #print(f"restart cond: {replacing}")

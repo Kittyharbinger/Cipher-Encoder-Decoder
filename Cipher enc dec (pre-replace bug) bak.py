@@ -2,14 +2,11 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
-# TODO track changed and unchanged letters
-# for letter in decoding_text, add to list (indexed substrings) 
-# for letter in original_text, add to list too 
-# for loop, nested, if x's match: pass
-
 # TODO include example ciphers (YT comments, wikipedia)
 
-# TODO command for candidate list/history
+# TODO match candidate_words index with letter_replacements
+# make relationship clear, number them in print()
+# for loop, nested loop inside to print candidate word
 # history of changes? pages? what's the most helpful?
 
 # (realising this ^ is a UI, huh?)
@@ -29,7 +26,6 @@ letters_replaced = [] # changed to list, dict keys overwritten. bad idea
 
 # Candidate words
 candidate_words = []
-candidate_words_prev = [] # updated when restarting decoding
 
 
 print("Welcome to the Decoder/Encoder")
@@ -71,15 +67,15 @@ def decoding_cipher_options():
 
 
 def cipher_on_hand():
-    print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper() for that sp. one
+    print("Please provide text to decode (please use lower case for now)") # if replacing.upper() in text, replacement.upper()
     global original_text
     original_text = input("> ")
 
-    #global encoded_text # same as original text?
-    #encoded_text = original_text
+    global encoded_text # same as original text?
+    encoded_text = original_text
 
     global decoding_text
-    decoding_text = original_text
+    decoding_text = encoded_text
 
     global decoding_text_prev # for undo
     decoding_text_prev = decoding_text
@@ -97,18 +93,12 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # BUG > 1 letter restarts decoding, fuck's sake
     if len(replacing) < 1:
         substitution_time()
     elif len(replacing) > 1:
-        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers this func
-            #print(f"restart cond: {replacing}")
+        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers func
             restart_decoding()
-        elif replacing == "his" or "history":
-            #print(f"history cond: {replacing}")
-            show_change_history()
         else:
-            #print(f"else cond: {replacing}")
             substitution_time()
 
     elif replacing not in decoding_text: # failsafe
@@ -117,7 +107,7 @@ def substitution_time():
         substitution_time()
 
 
-    print("Type a replacement letter (please use lower case for now)")
+    print("Type a replacement letter (please use lower case for now) (If you'd like to restart, type \"res\" or \"restart\")")
     global replacement
     replacement = input("> ")
 
@@ -126,15 +116,13 @@ def substitution_time():
     elif len(replacement) > 1:
         if replacement == "res" or "restart":
             restart_decoding()
-        elif replacement == "his" or "history":
-            show_change_history()
         else:
             substitution_time()
-            
-    # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
-    
-    decoding_text = decoding_text.replace(replacing, replacement) # BUG not replacing now :)
-    print("modified text:", decoding_text) # no seriously there's nothing different why do you do this to me?
+        
+
+    global decoding_text_prev
+    decoding_text = decoding_text.replace(replacing, replacement)
+    print("modified text:", decoding_text)
     proceed_or_undo()
 
 
@@ -144,27 +132,10 @@ def proceed_or_undo():
     print("Proceed with change or undo? \n1. Proceed \n2. Undo")
     choice = input("> ")
     if choice == "1":
+        # TODO change language here
         letters_replaced.append(f"replaced: {replacing}, replacement: {replacement}")
         print(letters_replaced[-1]) # not showing whole list each time
-
-        change_checker_list = []
-        decoding_text_listifed = list(decoding_text)
-        print(f"decode text listified {decoding_text_listifed}")
-        
-        
-        # if replacing affects changed letters and originals
-        # so replacing letters diff from original, if originals in same index, change those back
-
-        # for loop list() the decoding text after replacement
-        # check index against original text for loop list()-ed
-        # if replacing == original at that index, leave it be,
-        # isn't over-written then
-
-        # stitch it back together into a string, for x in list, str("" + x)
-        
-
         overwrite_prev()
-        # TODO change language here. later, after this feature gets in
 
     elif choice == "2":
         undo_replacement()
@@ -227,21 +198,11 @@ def restart_decoding():
     global decoding_text
     global original_text
     decoding_text = original_text
-    
-    global letters_replaced
-    #letters_replaced.clear() maybe not this, let user know what they've tried
-    
-    global candidate_words
-    global candidate_words_prev
-    candidate_words_prev = candidate_words
-    candidate_words.clear()
-    # only applies for same cipher. new one, just erase
     print("decoding restarted")
     substitution_time()
 
 
 def show_change_history():
-    # TODO option for current/prev attempt's list
     i = 0
     global letters_replaced
     global candidate_words
@@ -252,80 +213,11 @@ def show_change_history():
         for x in letters_replaced:
             print(x)
 
-    input("> ")
-    substitution_time()
-
 
 start()
 
-test_text = "hi there"
-for x in test_text:
-    print(x)
 
-
-# Spitballing #
-# OG-change tracking #
-# if letter and index match: pass
-# change letter temporarily so it's not caught in .replace()?
-
-# for loop replacing, HEADACHE
-"""
-for x in decoding_text:
-    replaced = x
-    for y in original_text:
-        original = y
-
-    # oh good lord my brain is melting, re-write this
-    if replacing == x in original_text:
-        x = "" # fix substring at index
-    
-    decoding_text_listifed.append(x)
-"""
-
-"""
-new_letter = ""
-    OG_letter = ""
-    for x in decoding_text:
-        new_letter = x
-        for y in original_text:
-            OG_letter = y # no fuck, this'll just 
-        
-        if new_letter == OG_letter:
-            if decoding_text != original_text:
-                 if x == replacing:
-                    x = replacement
-                    
-"""
-
-"""
-    # compare indexes then turn back into string
-    OG_text_letters = []
-    dec_text_letters = []
-    for letter in original_text:
-        OG_text_letters.append(letter)
-        for letter in decoding_text:
-            dec_text_letters.append(letter)
-        
-        if OG_text_letters[-1] == dec_text_letters[-1]:
-            pass
-"""
-
-
-"""
-# compare indexes and make it recognise the incoming mess
-    decoding_text = decoding_text.replace(replacing, replacement)
-    for x in decoding_text:
-        new_letter = x
-        for y in original_text:
-            OG_letter = y
-        
-        if new_letter == OG_letter:
-            if decoding_text != original_text:
-                 if x == replacing:
-                    x = replacement
-"""
-
-
+# Spitballing
 # notify user of letter with highest count? like frequency analysis
 
 

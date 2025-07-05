@@ -2,6 +2,8 @@
 
 # https://cryptii.com/pipes/caesar-cipher
 
+# TODO fix new input bug (input prompt after len > 1)
+
 # TODO track changed and unchanged letters
 # for letter in decoding_text, add to list (indexed substrings) 
 # for letter in original_text, add to list too 
@@ -110,14 +112,16 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
-    # BUG > 1 letter restarts decoding, fuck's sake
     if len(replacing) < 1:
         substitution_time()
-    elif len(replacing) > 1:
-        if replacing == "res" or "restart": # BUG anything between "res" and "restart" triggers this func
+
+    # BUG > 1 letter restarts decoding, fuck's sake
+    # TODO look up var == exact string
+    if len(replacing) > 1:
+        if "res" in replacing: # i think string has to be "if in"
             #print(f"restart cond: {replacing}")
             restart_decoding()
-        elif replacing == "his" or "history":
+        elif "his" or "history" in replacing:
             #print(f"history cond: {replacing}")
             show_change_history()
         else:
@@ -136,10 +140,11 @@ def substitution_time():
 
     if len(replacement) < 1:
         substitution_time()
-    elif len(replacement) > 1:
-        if replacement == "res" or "restart":
+    
+    if len(replacement) > 1: # elif to if
+        if "res" in replacement:
             restart_decoding()
-        elif replacement == "his" or "history":
+        elif "his" in replacement:
             show_change_history()
         else:
             substitution_time()

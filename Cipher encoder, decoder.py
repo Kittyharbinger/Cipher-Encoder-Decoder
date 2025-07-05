@@ -115,8 +115,6 @@ def substitution_time():
     if len(replacing) < 1:
         substitution_time()
 
-    # BUG > 1 letter restarts decoding, fuck's sake
-    # TODO look up var == exact string
     if len(replacing) > 1:
         if "res" in replacing: # i think string has to be "if in"
             #print(f"restart cond: {replacing}")
@@ -151,8 +149,8 @@ def substitution_time():
             
     # OH MY GOD I JUST WANT TO NOT REPLACE OG LETTERS AND MAKE A MESS
     
-    decoding_text = decoding_text.replace(replacing, replacement) # BUG not replacing now :)
-    print("modified text:", decoding_text) # no seriously there's nothing different why do you do this to me?
+    decoding_text = decoding_text.replace(replacing, replacement)
+    print("modified text:", decoding_text)
     proceed_or_undo()
 
 

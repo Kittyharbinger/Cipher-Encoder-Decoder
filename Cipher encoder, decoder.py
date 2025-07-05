@@ -56,8 +56,7 @@ def decoding_cipher_options():
     print("Decode example cipher? y/n (press Enter to skip)")
     choice = input("> ")
     if choice == "y":
-        print("no examples yet (enter anything to continue)")
-        input("> ")
+        example_ciphers()
         
     elif choice == "n":
         cipher_on_hand()
@@ -68,6 +67,20 @@ def decoding_cipher_options():
         decoding_cipher_options()
     
     cipher_on_hand()
+
+def example_ciphers():
+    global decoding_text
+    print("Take your pick:")
+    print("1. Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba. ")
+    print("2. P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz")
+    choice = input("> ")
+
+    if choice == "1":
+        decoding_text = "Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol hswohila, aoha uva h dvyk jvbsk il thkl vba. "
+    elif choice == "2":
+        decoding_text = "P svcl \"wohzl 1\" zv tbjo, zpujl P ruld P olhyk pa pu-nhtl iba ulcly mvbuk pa pu aol tbzpj bwsvhklk pu fvbabil. Av olhy pa uvd jslhysf, pa'z zv hthgpun. Npclz tl nvvzlibtwz hsdhfz"
+
+    substitution_time()
 
 
 def cipher_on_hand():
@@ -263,6 +276,14 @@ for x in test_text:
     print(x)
 
 
+# Example ciphers #
+"""
+Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
+hswohila, aoha uva h dvyk jvbsk il thkl vba.
+"""
+# grab YT comments, wikipedia excerpts
+
+
 # Spitballing #
 # OG-change tracking #
 # if letter and index match: pass
@@ -327,15 +348,6 @@ new_letter = ""
 
 
 # notify user of letter with highest count? like frequency analysis
-
-
-# Example ciphers #
-"""
-Pm ol ohk hufaopun jvumpkluaphs av zhf, ol dyval pa pu jpwoly, aoha pz, if zv johunpun aol vykly vm aol slaalyz vm aol 
-hswohila, aoha uva h dvyk jvbsk il thkl vba.
-"""
-# grab YT comments, wikipedia excerpts
-
 
 
 

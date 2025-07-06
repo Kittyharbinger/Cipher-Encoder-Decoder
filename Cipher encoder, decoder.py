@@ -38,6 +38,10 @@ letters_replaced = [] # changed to list, dict keys overwritten. bad idea
 candidate_words = []
 candidate_words_prev = [] # updated when restarting decoding
 
+# Input shortcuts
+restart_sh = {"res":"restart"}
+history_sh = {"his":"history"}
+
 
 print("Welcome to the Decoder/Encoder")
 
@@ -122,11 +126,17 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
+    if replacing not in decoding_text: # failsafe
+        print("letter not found in text (enter anything to continue)")
+        input("> ")
+        substitution_time()
+
     if len(replacing) < 1:
         substitution_time()
 
     if len(replacing) > 1:
-        if "res" in replacing: # i think string has to be "if in"
+        # if "res" or "restart" in dict (restart_sh)
+        if "res" in replacing: # i think string *has* to be "if in"
             #print(f"restart cond: {replacing}")
             restart_decoding()
         elif "his" or "history" in replacing:
@@ -135,11 +145,6 @@ def substitution_time():
         else:
             #print(f"else cond: {replacing}")
             substitution_time()
-
-    elif replacing not in decoding_text: # failsafe
-        print("letter not found in text (enter anything to continue)")
-        input("> ")
-        substitution_time()
 
 
     print("Type a replacement letter (please use lower case for now)")
@@ -194,11 +199,13 @@ def proceed_or_undo():
         # TODO look at how cipher decoding is usually organised, how they track originals and changed
         for x in decoding_text:
             replaced = x
-            for y in original_text:
-                original = y
+            #for y in original_text:
+            #    original = y
 
-            if replacing == x in original_text:
-                x = "" # fix substring at index
+            # if replacing in history
+            if replacing == x in letters_replaced:
+                # fix substring at index
+                x = "" 
             
             decoding_text_listifed.append(x)
 

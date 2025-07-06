@@ -122,6 +122,11 @@ def substitution_time():
     global replacing
     replacing = input("> ")
 
+    if replacing not in decoding_text: # failsafe
+        print("letter not found in text (enter anything to continue)")
+        input("> ")
+        substitution_time()
+
     if len(replacing) < 1:
         substitution_time()
 
@@ -135,11 +140,6 @@ def substitution_time():
         else:
             #print(f"else cond: {replacing}")
             substitution_time()
-
-    elif replacing not in decoding_text: # failsafe
-        print("letter not found in text (enter anything to continue)")
-        input("> ")
-        substitution_time()
 
 
     print("Type a replacement letter (please use lower case for now)")

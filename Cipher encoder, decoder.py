@@ -135,9 +135,15 @@ def substitution_time():
         substitution_time()
 
     if len(replacing) > 1:
+        #try:
+        #    replacing = "restart"
+        #    restart_decoding()
+        #except:
+        #    substitution_time()
+
         # if "res" or "restart" in dict (restart_sh)
         if "res" in replacing: # i think string *has* to be "if in"
-            #print(f"restart cond: {replacing}")
+            print(f"restart cond: {replacing}")
             restart_decoding()
         elif "his" or "history" in replacing:
             #print(f"history cond: {replacing}")
